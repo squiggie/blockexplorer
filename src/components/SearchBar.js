@@ -3,27 +3,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const SearchBar = () => {
-  const [searchInput, setSearchInput] = useState("");
+  const [blockNumber, setBlockNumber] = useState('');
+  const history = useHistory();
 
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleSearch = () => {
-    // Handle the search functionality here
-    console.log(`Searching for: ${searchInput}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/block-detail/${blockNumber}`);
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={searchInput}
-        onChange={handleInputChange}
-        placeholder="Enter block number or account address"
-      />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+    <Form>
+    <Form.Group className="mb-3" controlId="formblockchainSearch">
+        <Form.Label>Search</Form.Label>
+        <Form.Control type="text" placeholder="Enter in block number" />
+        <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      </Form.Group>
+      </Form>
   );
 };
 
