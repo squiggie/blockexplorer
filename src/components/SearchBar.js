@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
   const [blockNumber, setBlockNumber] = useState('');
@@ -12,15 +13,15 @@ const SearchBar = () => {
   };
 
   return (
-    <Form>
-    <Form.Group className="mb-3" controlId="formblockchainSearch">
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formblockchainSearch">
         <Form.Label>Search</Form.Label>
-        <Form.Control type="text" placeholder="Enter in block number" />
+        <Form.Control type="text" placeholder="Enter in block number" value={blockNumber} onChange={(e) => setBlockNumber(e.target.value)}/>
         <Button variant="primary" type="submit">
-        Submit
-      </Button>
+          Submit
+        </Button>
       </Form.Group>
-      </Form>
+    </Form>
   );
 };
 

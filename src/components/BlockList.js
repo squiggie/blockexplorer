@@ -7,6 +7,12 @@ const BlockList = ({ blocks }) => {
     return null; // Return null or a loading indicator if blocks is not an array
   }
 
+  // Function to format a timestamp to a readable date and time
+  const formatTimestamp = (timestamp) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    return new Date(timestamp * 1000).toLocaleString(undefined, options);
+  };
+
   return (
     <div>
       <h2>Recent Blocks</h2>
@@ -15,10 +21,8 @@ const BlockList = ({ blocks }) => {
           <h2>
             <Link to={`/block-detail/${block.number}`}>Block #{block.number}</Link>
           </h2>          
-          <p>Timestamp: {block.timestamp}</p>
+          <p>Timestamp: {formatTimestamp(block.timestamp)}</p> {/* Format timestamp */}
           <p>Hash: {block.hash}</p>
-          <p>Gas Limit: {block.gasLimit}</p>
-          <p>Gas Used: {block.gasUsed}</p>
         </div>
       ))}
     </div>
