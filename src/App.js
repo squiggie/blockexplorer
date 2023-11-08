@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import BlockList from "./components/BlockList";
-import AccountInformation from "./components/AccountInformation";
 import BlockDetail from "./components/BlockDetail";
+import AccountDetail from './components/AccountDetail';
+import TransactionDetail from './components/TransactionDetail';
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
 
 const settings = {
@@ -57,7 +57,7 @@ function App() {
             path="/block-detail/:blockNumber"
             render={({ match }) => {
               const blockNumber = match.params.blockNumber;
-              const block = blocks.find((block) => block.number === blockNumber); // Compare as strings
+              const block = blocks.find((block) => block.number === blockNumber);
               return block ? (
                 <BlockDetail block={block} />
               ) : (
@@ -65,7 +65,8 @@ function App() {
               );
             }}
           />
-          <Route path="/account/:accountAddress" component={AccountInformation} />
+          <Route path="/account-detail/:accountAddress" component={AccountDetail} />
+          <Route path="/transaction-detail/:transactionHash" component={TransactionDetail} />
         </Switch>
       </div>
     </Router>

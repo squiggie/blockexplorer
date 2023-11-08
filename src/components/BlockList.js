@@ -22,7 +22,6 @@ const BlockList = ({ blocks }) => {
             <Link to={`/block-detail/${block.number}`}>Block #{block.number}</Link>
           </h2>          
           <p>Timestamp: {formatTimestamp(block.timestamp)}</p> {/* Format timestamp */}
-          <p>Hash: {block.hash}</p>
         </div>
       ))}
     </div>
